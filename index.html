@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Condensed&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js"></script>
+  <title>TODO List</title>
+</head>
+<body>
+  <header>
+    <h1> TODO </h1>
+    <h2> Organiza por fin tu vida </h2>
+  </header>
+
+  <section id="input-sect">
+    <form id="todo-form" action="#">
+      <input name="task" type="text" placeholder="p.e. Ir de compras">
+      <button type="submit"> Añadir </button>
+    </form>
+  </section>
+
+  <section id="list-sect">
+    <ul id="task-list">
+      <!-- <li class="task-item done">
+        <div class="task-btn complete" role="button">✓</div>
+        <p>
+          Equisden't
+        </p>
+        <div class="task-btn edit"    role="button">✎</div>
+        <div class="task-btn delete"  role="button">⊘</div>
+      </li> -->
+    </ul>
+  </section>
+
+  <section id="edit-modal">
+    <form id="edit-form" action="#">
+      <input type="hidden" name="id">
+
+      <label for="edit-task-input">
+        Modificar la tarea
+      </label>
+      <input id="edit-task-input" type="text" name="task">
+      
+      <button type="submit"> Modificar </button>
+    </form>
+  </section>
+</body>
+</html>

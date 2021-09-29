@@ -1,8 +1,12 @@
 //Variables
-const tasks = [];
+let tasks = [];
 
 //Main
 window.onload = () => {
+
+  //Render PrevTasks
+  tasks = getLSTasks();
+  renderTasks();
 
   //Set Listeners
   setOnSubmitFormListener();
@@ -72,6 +76,7 @@ const renderTasks = () => {
   }, "");
 
   list.innerHTML = tasksHTML;
+  setLSTasks(tasks);
 }
 
 //On click handlers
@@ -128,3 +133,7 @@ const showEditModal = (task)=> {
 
   modal.classList.add("visible");
 }
+
+//Local Storage functions
+const getLSTasks = () => JSON.parse(localStorage.getItem("tasks")) || [];
+const setLSTasks = (tasksList = []) => localStorage.setItem("tasks", JSON.stringify(tasksList));

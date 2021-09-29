@@ -27,7 +27,7 @@ const setOnSubmitFormListener = () => {
     
     //Logica de procesar la task
     addTask(newTask);
-    renderTasks();
+    updateTasks();
 
     form.reset()
   });
@@ -45,17 +45,22 @@ const setOnEditFormListener = () => {
     
     if(!newTask || !id) return;
 
-    onFindTask(id, true, (index) => {
+    onFindTask(id, (index) => {
       tasks[index] = {
         ...tasks[index],
         task: newTask
       }
-
-      document.querySelector("#edit-modal").classList.remove("visible")
+      updateTasks();
+      document.querySelector("#edit-modal").classList.remove("visible");
     });
 
     form.reset();
   })
+}
+
+const updateTasks = () => {
+  renderTasks();
+  setLSTasks(tasks);
 }
 
 //render functions
@@ -76,7 +81,6 @@ const renderTasks = () => {
   }, "");
 
   list.innerHTML = tasksHTML;
-  setLSTasks(tasks);
 }
 
 //On click handlers
@@ -87,12 +91,14 @@ const onToggleHandler = (id) => {
       ...rest,
       done: !done
     };
+    updateTasks();
   })
 }
 
 const onDeleteHandler = (id) => {
   onFindTask(id, true, (index)=> {
     tasks.splice(index, 1);
+    updateTasks();
   }); 
 }
 
@@ -113,11 +119,10 @@ const addTask = (task) => {
   tasks.push(newTask);
 }
 
-const onFindTask = (id, rerender, onFind) => {
+const onFindTask = (id, onFind) => {
   const index = tasks.findIndex(task => task.id === id);
   if(index >= 0) {
     onFind(index);
-    rerender && renderTasks();
   }
 }
 
